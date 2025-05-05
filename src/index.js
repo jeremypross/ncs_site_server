@@ -6,6 +6,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
+const requireAuth = require('./middlewares/requireAuth');
 
 // create app object
 const app = express();
@@ -31,9 +32,10 @@ mongoose.connection.on('error', () => {
     console.error('Error connecting to mongo', err);
 });
 
-// call this function when you make a GET request to this route
-app.get('/', (req, res) => {
-    res.send('Hi there!');
+// when you make a GET request to this route, call this function
+// run middleware whenever someone makes a request to this route - authRoutes.js
+app.get('/', requireAuth, (req, res) => {
+    res.send(`Your email: ${req.user.email}`);
 });
 
 app.listen(3000, () => {
