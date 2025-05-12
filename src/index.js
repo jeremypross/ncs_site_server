@@ -1,4 +1,5 @@
 require('./models/User');
+require('./models/Post');
 
 // import express
 const express = require('express');
@@ -6,6 +7,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
+const postRoutes = require('./routes/postRoutes');
 const requireAuth = require('./middlewares/requireAuth');
 
 // create app object
@@ -16,6 +18,7 @@ app.use(bodyParser.json());
 
 // tell app to use authRoutes.js file to handle routing:
 app.use(authRoutes);
+app.use(postRoutes);
 
 // connect to mongo cluster
 const mongoUri = 'mongodb+srv://admin:LLLAUldzJ1y7ywA2@cluster0.7qgt3ml.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';

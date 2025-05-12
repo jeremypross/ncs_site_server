@@ -6,7 +6,7 @@ const metaTags = new mongoose.Schema({
 
 const postSchema = new mongoose.Schema({
     postId: {
-        type: mongoose.Schema.Tupes.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
     title: {
